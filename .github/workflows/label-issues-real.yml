@@ -13,11 +13,14 @@ jobs:
           echo "Repo: ${{ github.repository }}"
           echo "Issue number: ${{ github.event.issue.number }}"
           echo "Token: ${{ secrets.GITHUB_TOKEN }}"
+          echo "URL: https://github.com/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels"
           curl -X POST \
-          --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
+          --url https://github.com/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
           -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           -H 'content-type: application/json' \
           -d '{
               "labels": ["bug"]
             }' \
           --fail
+
+# --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
